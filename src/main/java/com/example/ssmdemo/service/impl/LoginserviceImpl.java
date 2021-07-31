@@ -11,7 +11,6 @@ import java.rmi.registry.LocateRegistry;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 
 @Service
 @Transactional
@@ -38,9 +37,4 @@ public class LoginserviceImpl  implements LoginService {
    public User selectUIdByEmail(String email){
         return userMapper.selectUIdByEmail(email);
    }
-
-    @Override
-    public List<User> selectAll() {
-        userMapper.select();
-    }
 }

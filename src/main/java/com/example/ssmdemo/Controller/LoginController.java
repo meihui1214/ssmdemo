@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.swing.*;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -19,15 +18,14 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
-    @RequestMapping("/login")
+    @RequestMapping("login")
     @ResponseBody
-    public Map<String,Object> login(@RequestBody Map<String, Object> params) {
-        HashMap<String,Object>  map =new HashMap<>();
-        if (StringUtils.isNotEmpty(String.valueOf(params.get("id"))) && StringUtils.isNotEmpty(String.valueOf(params.get("password")))) {
-            if (loginService.login((Integer) params.get("id"), (String) params.get("password")) != null) {
-               map.put("login",loginService.selectAll());
+    public void login(@RequestBody Map<String,Object> params){
+        if (StringUtils.isNotEmpty(String.valueOf(params.get("id"))) && StringUtils.isNotEmpty(String.valueOf(params.get("password"))){
+            loginService.login((Integer) params.get("id"),(String) params.get("password"));
+            if (loginService.login((Integer)params.get("id"),(String)params.get("password")) != null){
+
             }
         }
-        return map;
     }
 }
