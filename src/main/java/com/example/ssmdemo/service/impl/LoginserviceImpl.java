@@ -28,12 +28,12 @@ public class LoginserviceImpl  implements LoginService {
           user.setLastLoginTime(now);
           userMapper.insert(user);
           System.out.println("用户登录成功");
-          System.out.println(password);
       }else {
           System.out.println("用户不存在");
       }
        return userMapper.SelectByUIdAndPassword(uId, password);
    }
+
    public User selectUIdByEmail(String email){
         return userMapper.selectUIdByEmail(email);
    }
