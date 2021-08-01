@@ -41,6 +41,6 @@ public class LoginserviceImpl  implements LoginService {
 
     @Override
     public List<User> selectAll() {
-        userMapper.select();
+       return userMapper.select();
     }
 }
