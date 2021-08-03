@@ -19,6 +19,6 @@ class SsmDemoApplicationTests {
 
     @Test
     void contextzdLoads() {
-        loginService.login(2,"123456789");
+        System.out.println(loginService.selectAll().toString());
     }
 }

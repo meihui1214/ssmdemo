@@ -18,6 +18,15 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class User implements Serializable {
     private Integer uId;
+
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
+    }
+
     private String email;
     private String password;
     private Integer loginCount;

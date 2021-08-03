@@ -14,16 +14,16 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Service
-@Transactional
 public class LoginserviceImpl  implements LoginService {
     @Autowired
    private UserMapper userMapper;
 
+    @Transactional
    public User login(Integer uId, String password){
       if (userMapper.SelectByUIdAndPassword(uId,password) != null){
           User user = new User();
           user.setLoginCount(0);
-          user.setUId(uId);
+          user.setuId(uId);
           user.setPassword(password);
           LocalDateTime now =LocalDateTime.now();
           user.setLastLoginTime(now);
@@ -32,7 +32,7 @@ public class LoginserviceImpl  implements LoginService {
       }else {
           System.out.println("用户不存在");
       }
-       return userMapper.SelectByUIdAndPassword(uId, password);
+       return null;
    }
 
    public User selectUIdByEmail(String email){
