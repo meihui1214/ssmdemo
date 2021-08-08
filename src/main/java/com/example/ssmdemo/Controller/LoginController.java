@@ -15,15 +15,13 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping("/login")
     @ResponseBody
-    public Map<String,Object> login(@RequestBody Map<String, Object> params) {
+    public Map<String,Object> login(@RequestBody Map<String,Object> params) {
         Map<String,Object>  map = new HashMap<>();
-        if (StringUtils.isNotEmpty(String.valueOf(params.get("id"))) && StringUtils.isNotEmpty(String.valueOf(params.get("password")))) {
-            if (loginService.login((Integer) params.get("id"), (String) params.get("password")) != null) {
+            if (loginService.login((String) params.get("email"),(String) params.get("password")) != null) {
                map.put("login",loginService.selectAll());
             }
-        }
         return map;
     }
 }

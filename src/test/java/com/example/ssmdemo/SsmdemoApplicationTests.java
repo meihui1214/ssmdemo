@@ -19,6 +19,6 @@ class SsmDemoApplicationTests {
 
     @Test
     void contextzdLoads() {
-        System.out.println(loginService.selectAll().toString());
+        System.out.println(loginService.selectAll().get(1).getLastLoginTime());
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserMapper {
     List<User> select();
     int insert(User user);
-    User SelectByUIdAndPassword(@Param("uId")Integer uId,@Param("password") String password);
+    User SelectByEmailAndPassword(@Param("email")String email,@Param("password") String password);
     User selectUIdByEmail(@Param("email") String email);
     int deleteByUId(@Param("uId") Integer uId);
 }

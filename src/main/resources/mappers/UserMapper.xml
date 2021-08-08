@@ -16,8 +16,8 @@
     delete from users where u_id =#{uId};
     </delete>
 
-    <select id="SelectByUIdAndPassword" resultMap="UserResultMap" >
-    select * from users where u_id=#{uId} and password=#{password};
+    <select id="SelectByEmailAndPassword" resultMap="UserResultMap" parameterType="string" >
+    select * from users where email=#{email} and password=#{password};
     </select>
 
     <select id="selectUIdByEmail" resultType="com.example.ssmdemo.domain.User" parameterType="string">

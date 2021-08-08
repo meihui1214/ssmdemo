@@ -19,24 +19,20 @@ public class LoginserviceImpl  implements LoginService {
    private UserMapper userMapper;
 
     @Transactional
-   public User login(Integer uId, String password){
-      if (userMapper.SelectByUIdAndPassword(uId,password) != null){
+   public User login(String email, String password){
+      if (userMapper.SelectByEmailAndPassword(email,password) != null){
           User user = new User();
           user.setLoginCount(0);
-          user.setuId(uId);
+          user.setEmail(email);
           user.setPassword(password);
           LocalDateTime now =LocalDateTime.now();
           user.setLastLoginTime(now);
           userMapper.insert(user);
-          System.out.println("用户登录成功");
+
       }else {
           System.out.println("用户不存在");
       }
        return null;
-   }
-
-   public User selectUIdByEmail(String email){
-        return userMapper.selectUIdByEmail(email);
    }
 
     @Override
