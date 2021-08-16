@@ -23,15 +23,15 @@ public class LoginserviceImpl  implements LoginService {
       if (userMapper.SelectByEmailAndPassword(email,password) != null){
           User user = new User();
           user.setLoginCount(0);
-          user.setEmail(email);
-          user.setPassword(password);
           LocalDateTime now =LocalDateTime.now();
           user.setLastLoginTime(now);
           userMapper.insert(user);
-
+          System.out.println("用户登录成功");
+          return user;
       }else {
           System.out.println("用户不存在");
       }
+        System.out.println("dsfaf");
        return null;
    }
 
