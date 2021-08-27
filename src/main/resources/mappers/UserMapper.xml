@@ -7,24 +7,71 @@
         <result column="email" property="email" jdbcType="VARCHAR" javaType="java.lang.String"/>
         <result column="password" property="password"/>
         <result column="login_count" property="loginCount" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-        <result column="last_login_time" property="lastLoginTime" javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP" />
+        <result column="last_login_time" property="lastLoginTime" javaType="java.time.LocalDateTime"
+                jdbcType="TIMESTAMP"/>
     </resultMap>
     <insert id="insert" parameterType="com.example.ssmdemo.domain.User" useGeneratedKeys="true" keyProperty="uId">
-        insert into users (email,password,login_count, last_login_time) values (#{email},#{password},#{loginCount}+1,#{lastLoginTime});
+        insert into users (email, password, login_count, last_login_time)
+        values (#{email}, #{password}, #{loginCount} + 1, #{lastLoginTime});
     </insert>
     <delete id="deleteByUId">
-    delete from users where u_id =#{uId};
+        delete
+        from users
+        where u_id = #{uId};
     </delete>
 
-    <select id="SelectByEmailAndPassword" resultMap="UserResultMap" parameterType="java.lang.String" >
-    select * from users where email=#{email} and password=#{password};
+    <select id="SelectByEmailAndPassword" resultMap="UserResultMap" parameterType="java.lang.String">
+        select *
+        from users
+        where email = #{email}
+          and password = #{password};
     </select>
 
     <select id="selectUIdByEmail" resultType="com.example.ssmdemo.domain.User" parameterType="string">
-        select u_id from users where email=#{email};
+        select u_id
+        from users
+        where email = #{email};
     </select>
 
     <select id="select" resultMap="UserResultMap" statementType="STATEMENT">
-        select * from users;
+        select *
+        from users;
+    </select>
+    <select id="selectAllByEmailOrPasswordAndPassword" resultType="com.example.ssmdemo.domain.User"
+            parameterType="com.example.ssmdemo.domain.User">
+        select * from users
+        <where>
+            <choose>
+                <when test="password != null">
+                    and password = #{password}
+                </when>
+
+                <when test="email != null">
+                    and email = #{email}
+                </when>
+
+                <otherwise>
+                    and 1 = 1
+                </otherwise>
+            </choose>
+        </where>
+
+    </select>
+    <select id="selectByEmailAndPassword" resultMap="UserResultMap">
+        select *from users
+        <where>
+            <if test="emails.size != 0">
+                email in
+                <foreach collection="emails" index="index1" item="emai" open="(" close=")" separator=",">
+                #{emai}
+                </foreach>
+            </if>
+            <if test="params.size != 0">
+                and password in
+                <foreach collection="params" index="index" item="pass" open="(" close=")" separator=",">
+                    #{pass}
+                </foreach>
+            </if>
+        </where>
     </select>
 </mapper>
