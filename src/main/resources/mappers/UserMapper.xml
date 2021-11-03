@@ -14,13 +14,16 @@
         insert into users (email, password, login_count, last_login_time)
         values (#{email}, #{password}, #{loginCount} + 1, #{lastLoginTime});
     </insert>
+    <update id="updateUser" parameterType="com.example.ssmdemo.domain.User" >
+        update users set last_login_time = #{lastLoginTime},login_count = login_count + 1 where email = #{email};
+    </update>
     <delete id="deleteByUId">
         delete
         from users
         where u_id = #{uId};
     </delete>
 
-    <select id="SelectByEmailAndPassword" resultMap="UserResultMap" parameterType="java.lang.String">
+    <select id="selectByEmailAndPassword" resultMap="UserResultMap" parameterType="java.lang.String">
         select *
         from users
         where email = #{email}
@@ -57,7 +60,7 @@
         </where>
 
     </select>
-    <select id="selectByEmailAndPassword" resultMap="UserResultMap">
+    <select id="selectByEmailAndPassword1" resultMap="UserResultMap">
         select *from users
         <where>
             <if test="emails.size != 0">
@@ -73,5 +76,8 @@
                 </foreach>
             </if>
         </where>
+    </select>
+    <select id="selectAll" resultType="java.util.Map">
+        select EditTime,DictCode,EnumTypes,DictValue from AMP_Dict;
     </select>
 </mapper>

@@ -16,13 +16,16 @@
         </association>
     </resultMap>
 
-    <select id="selectAllLogs" resultType="com.example.ssmdemo.domain.Log" resultMap="LogResultMapper">
-        select * from logs l left join users u on l.u_id = u.u_id where l.u_id = #{logId};
+    <select id="selectAllLogs" resultMap="LogResultMapper">
+        select *
+        from logs l
+                 left join users u on l.u_id = u.u_id
+        where l.u_id = #{logId};
     </select>
 
-    <insert id="insert" parameterType="com.example.ssmdemo.domain.Log">
+    <insert id="insert" parameterType="com.example.ssmdemo.domain.Log" >
         insert into logs(log_id, u_id, login_count, last_login_time)
-        values (#{logId}, #{user.uId}, #{loginCount}, #{lastLoginTime});
+        values (#{logId}, #{user.uId}, #{loginCount} + 1, #{lastLoginTime});
     </insert>
 
 </mapper>

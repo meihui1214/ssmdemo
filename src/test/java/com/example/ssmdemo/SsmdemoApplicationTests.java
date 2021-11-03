@@ -6,6 +6,7 @@ import com.example.ssmdemo.mapper.LogMapper;
 import com.example.ssmdemo.mapper.UserMapper;
 import com.example.ssmdemo.service.LoginService;
 import com.example.ssmdemo.service.impl.LoginserviceImpl;
+import io.micrometer.core.instrument.util.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @SpringBootTest
 class SsmDemoApplicationTests {
@@ -31,7 +33,7 @@ class SsmDemoApplicationTests {
 
     @Test
     void contextzdLoads() {
-        userMapper.SelectByEmailAndPassword("zhangmeihui", "123456789");
+        userMapper.selectByEmailAndPassword("zhangmeihui", "123456789");
     }
 
     @Test
@@ -67,5 +69,30 @@ class SsmDemoApplicationTests {
         log.setLoginCount(1);
         log.setLastLoginTime(LocalDateTime.now());
         logMapper.insert(log);
+    }
+    @Test
+     void annotationTest(){
+        List<Map<String, Object>> maps = userMapper.selectAll();
+
+
+        maps = maps.stream().sorted((o1, o2) -> {
+            if (StringUtils.isEmpty(o1.get("EditTime").toString()) || StringUtils.isEmpty(o2.get("EditTime").toString())) {
+                return o1.get("DictCode").toString().compareTo(o2.get("DictCode").toString());
+            } else if (o1.get("EditTime").equals(o2.get("EditTime"))) {
+                return o1.get("DictCode").toString().compareTo(o2.get("DictCode").toString());
+            } else if (o1.get("EditTime").toString().compareTo(o2.get("EditTime").toString()) > 0)
+                return -1;
+            return 1;
+            /*if (StringUtils.isEmpty(o1.get("EditTime").toString())||StringUtils.isEmpty(o2.get("EditTime").toString())
+            || o1.get("EditTime").equals(o2.get("EditTime"))) {
+                return o1.get("dictcode").toString().compareTo(o2.get("dictcode").toString());
+            }
+            else {
+               if (o1.get("EditTime").toString().compareTo(o2.get("EditTime").toString()) >0)
+                   return -1;
+               return 1;
+            }*/
+        }).collect(Collectors.toList());
+        maps.forEach(System.out::println);
     }
 }
