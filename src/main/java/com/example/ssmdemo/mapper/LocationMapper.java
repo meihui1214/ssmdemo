@@ -3,5 +3,5 @@ package com.example.ssmdemo.mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface UserIDFileMapper {
+public interface LocationMapper {
 }

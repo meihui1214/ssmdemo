@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.util.unit.DataSize;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartResolver;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 import java.util.Iterator;
 
@@ -34,5 +36,6 @@ public class SsmDemoApplication {
         resolver.setMaxUploadSize(50 * 1024 * 1024);//上传文件大小 50M 50*1024*1024
         return resolver;
     }*/
+
 
 }
