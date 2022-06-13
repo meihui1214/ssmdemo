@@ -24,7 +24,7 @@ import java.lang.reflect.Field;
 import java.util.zip.ZipFile;
 
 @Controller
-@RequestMapping("/file")
+@RequestMapping(value = "/file",produces = "application/json;charset=utf-8")
 public class FileController {
 
     @RequestMapping(value = "/upFile",method = RequestMethod.POST)
@@ -55,4 +55,5 @@ public class FileController {
 
         return j+"个文件上传成功";
     }
+
 }
