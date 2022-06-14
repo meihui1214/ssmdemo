@@ -24,9 +24,10 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> login(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes) {
+    public Map<String, Object> login(@RequestBody Map<String, Object> params, HttpServletRequest request, HttpServletResponse response,
+                                     Model model, RedirectAttributes redirectAttributes) {
         Map<String, Object> map = new HashMap<>();
         System.out.println(request.getParameter("email"));
         try {
@@ -46,7 +47,8 @@ public class LoginController {
 
     @RequestMapping("/login1")
     @ResponseBody
-    public Map<String, Object> login1(@RequestParam("1") String email,@RequestParam("2") String password, HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes) {
+    public Map<String, Object> login1(@RequestParam("1") String email,@RequestParam("2") String password, HttpServletRequest request,
+                                      HttpServletResponse response, Model model, RedirectAttributes redirectAttributes) {
         Map<String, Object> map = new HashMap<>();
         System.out.println(request.getAttribute("1"));
         System.out.println(request.getSession().getAttribute("1"));

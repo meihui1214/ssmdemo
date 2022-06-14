@@ -3,6 +3,8 @@ package com.example.ssmdemo;
 import org.apache.catalina.Manager;
 import org.apache.catalina.Session;
 import org.apache.catalina.SessionListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -27,7 +29,7 @@ public class SsmDemoApplication {
         SpringApplication.run(SsmDemoApplication.class, args);
     }
 
-   /* @Bean(name = "multipartResolver")
+ /*   @Bean(name = "multipartResolver")
     public MultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("UTF-8");

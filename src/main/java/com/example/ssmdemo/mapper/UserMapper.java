@@ -10,8 +10,6 @@ import java.util.Map;
 @Mapper
 public interface UserMapper {
 
-
-
     List<User> selectByEmailAndPassword(@Param("emails") Map<String, String> emails, @Param("params") Map<String, String> params);
 
     List<User> selectAllByEmailOrPasswordAndPassword(User user);

@@ -11,7 +11,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 public class WebConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyInterceptor());
+        registry.addInterceptor(new MyInterceptor())
+                .addPathPatterns("/**") //拦截的路径
+                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/swagger-ui.html/**");
         super.addInterceptors(registry);
     }
 }
