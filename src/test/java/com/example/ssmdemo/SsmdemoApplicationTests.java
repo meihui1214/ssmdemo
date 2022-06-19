@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.ssmdemo.domain.Area;
 import com.example.ssmdemo.domain.Log;
 import com.example.ssmdemo.domain.User;
+import com.example.ssmdemo.domain.excel.ExcelUtils;
 import com.example.ssmdemo.mapper.AreaMapper;
 import com.example.ssmdemo.mapper.LogMapper;
 import com.example.ssmdemo.mapper.UserMapper;
@@ -22,6 +23,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.w3c.dom.ls.LSOutput;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +41,8 @@ class SsmDemoApplicationTests {
     private AreaMapper areaMapper;
     @Autowired
    private LogMapper logMapper;
+    @Autowired
+    private ExcelUtils excelUtils;
 
     @Test
     void contextzdLoads() {
@@ -126,11 +130,15 @@ class SsmDemoApplicationTests {
             area.setLongitude(longitude);
             areaMapper.updataAreaByAreaCode(area);
 
-
             System.out.println(name +" "+longitude+" "+latitude+" "+areaCode);
 
         }
         System.out.println();
 
+    }
+
+    @Test
+    void creatExcel(){
+        ExcelUtils.readExcel();
     }
 }

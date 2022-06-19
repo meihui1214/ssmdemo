@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.util.unit.DataSize;
 import org.springframework.web.bind.annotation.ResponseBody;
