@@ -24,6 +24,14 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.zip.ZipFile;
 
+
+/**
+ * 上传多个文件
+ * @author ZMH
+ * @date 2022/9/21 15:54
+ * @param null
+ * @return null
+ */
 @Controller
 @RequestMapping(value = "/file",produces = "application/json;charset=utf-8")
 public class FileController {
